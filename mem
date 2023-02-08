@@ -1,0 +1,6 @@
+v2.0 raw
+
+mov $a 3
+mov $b 2
+add a b
+
