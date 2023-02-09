@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\CPU\\Assembler\\cpu\\Assembler.csproj",
+      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\CPU\\cpu\\Assembler\\cpu\\Assembler.csproj",
       "projectName": "Assembler",
-      "projectPath": "C:\\Users\\disrct\\Desktop\\CPU\\Assembler\\cpu\\Assembler.csproj",
+      "projectPath": "C:\\Users\\disrct\\Desktop\\CPU\\cpu\\Assembler\\cpu\\Assembler.csproj",
       "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\disrct\\Desktop\\CPU\\Assembler\\cpu\\obj\\",
+      "outputPath": "C:\\Users\\disrct\\Desktop\\CPU\\cpu\\Assembler\\cpu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

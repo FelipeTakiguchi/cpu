@@ -35,6 +35,7 @@ try
         saveTags(line);
     }
     
+    count_line = 0;
     reader.Close();
     writer.Close();
     writer = new StreamWriter("memory");
@@ -191,7 +192,9 @@ void saveTags(string line)
         parts[0] = parts[0].Split(":")[0];
         (string, byte[]) value = (parts[0], fatoraByte3(count_line));
         tags.Add(value);
+        count_line--;
     }
+    count_line++;
 }
 
 string processLine(string line)
@@ -237,11 +240,14 @@ string processLine(string line)
     }   
 
     if(parts[0] == "mov"){
-        if(parts[1][0] == '['&& parts[1][(parts[0].Length)-1] == ']'){
+        if(parts[1][0] == '[' && parts[1][(parts[1].Length)-1] == ']'){
             appendByte(ref opCode, 0, 0, 0, 1, 0);
-            appendByte(ref opCode, 4, 0, 0, 0, 1);
+            appendByte(ref opCode, 4, 0, 0, 1, 0);
             parts[1] = parts[1].Split("[")[1];
             parts[1] = parts[1].Split("]")[0];
+
+            parts[1] = parts[1].Split("$")[1];
+            parts[2] = parts[2].Split("$")[1];
 
             byte[] byts = fatoraByte(Convert.ToInt32(parts[1]));
             appendByte(ref opCode, 8, byts[0], byts[1], byts[2], byts[3]);
@@ -250,7 +256,7 @@ string processLine(string line)
             appendByte(ref opCode, 12, byts[0], byts[1], byts[2], byts[3]);
         } else if(parts[2][0] == '[' && parts[2][(parts[0].Length)-1] == ']'){
             appendByte(ref opCode, 0, 0, 0, 1, 0);
-            appendByte(ref opCode, 4, 0, 0, 1, 0);
+            appendByte(ref opCode, 4, 0, 0, 0, 1);
 
             byte[] byts = fatoraByte(Convert.ToInt32(parts[1]));
             appendByte(ref opCode, 8, byts[0], byts[1], byts[2], byts[3]);
@@ -264,13 +270,20 @@ string processLine(string line)
         } else if(parts[1][0] == '$' && parts[2][0] == '$'){
             appendByte(ref opCode, 0, 0, 0, 1, 0);
             appendByte(ref opCode, 4, 0, 0, 0, 0);
+            parts[1] = parts[1].Split("$")[1];
             byte[] byts = fatoraByte(Convert.ToInt32(parts[1]));
             appendByte(ref opCode, 8, byts[0], byts[1], byts[2], byts[3]);
-            
+            parts[2] = parts[2].Split("$")[1];            
             byts = fatoraByte(Convert.ToInt32(parts[2]));
             appendByte(ref opCode, 12, byts[0], byts[1], byts[2], byts[3]);
         } else if(parts[1][0] == '$'){
             appendByte(ref opCode, 0, 0, 0, 1, 1);
+            parts[1] = parts[1].Split("$")[1];
+            byte[] byts = fatoraByte(Convert.ToInt32(parts[1]));
+            appendByte(ref opCode, 4, byts[0], byts[1], byts[2], byts[3]);
+            byte[] byts2 = fatoraByte2(Convert.ToInt32(parts[2]));
+            appendByte(ref opCode, 8, byts2[0], byts2[1], byts2[2], byts2[3]);
+            appendByte(ref opCode, 12, byts2[4], byts2[5], byts2[6], byts2[7]);
         }    
     }
 
@@ -444,7 +457,7 @@ string processLine(string line)
 string toHex(byte[] code)
 {
     string hex = null;
-    string[] letras = new string[]{"A", "B", "C","'D", "E"};
+    string[] letras = new string[]{"A", "B", "C","'D", "E", "F"};
 
     for(int i = 0; i < code.Length/4; i++){
         int value = 0;

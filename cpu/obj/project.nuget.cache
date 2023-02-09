@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "akoh3BrR5Ij3cuq3mk/X4dP/mXLK5PY7B3bYE8LC/VYO2493XDXY39L6T0rckKnGPCg70zAW0G88qStiq0JiIw==",
+  "dgSpecHash": "hPuRug0GfYgtNMUj1GubmpZEK6cu+L8zjHrTZ+kqUareaH4ed6RmtanAgcVqMb+MKHd+rTRjgf4KZkryGINPHA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\disrct\\Desktop\\CPU\\Assembler\\cpu\\Assembler.csproj",
+  "projectFilePath": "C:\\Users\\disrct\\Desktop\\CPU\\cpu\\Assembler\\cpu\\Assembler.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
